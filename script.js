@@ -111,14 +111,13 @@ function handleSliderChange(event) {
 
 /**
  * Handle donate button click
- * TODO: Replace with actual Campact donation URL
+ * Opens Campact donation form with pre-filled amount
  */
 function handleDonateClick() {
     const donationValue = parseInt(slider.value, 10);
 
-    // For now, using a placeholder URL
-    // Replace with actual Campact donation page URL
-    const campactUrl = `https://www.campact.de/spenden/?amount=${donationValue}`;
+    // Campact donation form URL with da (donation amount) parameter
+    const campactUrl = `https://aktion.campact.de/campact/unterstuetzen/spenden?da=${donationValue}`;
 
     // Open in new tab
     window.open(campactUrl, '_blank');

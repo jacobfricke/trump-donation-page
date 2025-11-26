@@ -1,11 +1,11 @@
 // Preload all images to prevent flicker
 const imageUrls = [
-    'images/trump-1-neutral.jpg',
-    'images/trump-2-slightly-annoyed.jpg',
-    'images/trump-3-annoyed.jpg',
-    'images/trump-4-angry.jpg',
-    'images/trump-5-very-angry.jpg',
-    'images/trump-6-maximum-anger.jpg'
+    'images/trump-1-neutral.png',
+    'images/trump-2-slightly-annoyed.png',
+    'images/trump-3-annoyed.png',
+    'images/trump-4-angry.png',
+    'images/trump-5-very-angry.png',
+    'images/trump-6-maximum-anger.png'
 ];
 
 // Preload images

@@ -34,29 +34,35 @@ body {
     transition: opacity 300ms ease-in-out;
 }
 
-/* Image paths for each layer */
+/* Image paths for each layer with fallback colors */
 .background-layer[data-layer="1"] {
+    background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
     background-image: url('images/trump-1-neutral.jpg');
     opacity: 1; /* Start with first image visible */
 }
 
 .background-layer[data-layer="2"] {
+    background: linear-gradient(135deg, #7B68EE 0%, #6A5ACD 100%);
     background-image: url('images/trump-2-slightly-annoyed.jpg');
 }
 
 .background-layer[data-layer="3"] {
+    background: linear-gradient(135deg, #F5A623 0%, #E09616 100%);
     background-image: url('images/trump-3-annoyed.jpg');
 }
 
 .background-layer[data-layer="4"] {
+    background: linear-gradient(135deg, #F8E71C 0%, #E6D619 100%);
     background-image: url('images/trump-4-angry.jpg');
 }
 
 .background-layer[data-layer="5"] {
+    background: linear-gradient(135deg, #FF6B6B 0%, #EE5A52 100%);
     background-image: url('images/trump-5-very-angry.jpg');
 }
 
 .background-layer[data-layer="6"] {
+    background: linear-gradient(135deg, #D0021B 0%, #B00118 100%);
     background-image: url('images/trump-6-maximum-anger.jpg');
 }
 

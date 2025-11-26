@@ -42,6 +42,7 @@ const MESSAGES = [
 
 /**
  * Calculate and apply crossfade opacity based on slider value
+ * Ensures only ONE face is prominently visible at a time
  */
 function updateCrossfade(value) {
     // Find which range we're in
@@ -60,21 +61,33 @@ function updateCrossfade(value) {
     const valueInRange = value - currentRange.min;
     const progress = valueInRange / rangeSize;
 
-    // Set opacity for all layers
+    // Use easing function for smoother, more natural transitions
+    const easedProgress = easeInOutCubic(progress);
+
+    // Set opacity for all layers - ensure only one face is visible
     backgroundLayers.forEach((layer, index) => {
         const layerNumber = index + 1;
 
         if (layerNumber === currentRange.fromLayer) {
-            // Fade out the "from" layer
-            layer.style.opacity = 1 - progress;
+            // Fade out the "from" layer smoothly
+            layer.style.opacity = 1 - easedProgress;
         } else if (layerNumber === currentRange.toLayer) {
-            // Fade in the "to" layer
-            layer.style.opacity = progress;
+            // Fade in the "to" layer smoothly
+            layer.style.opacity = easedProgress;
         } else {
-            // Hide all other layers
+            // Completely hide all other layers
             layer.style.opacity = 0;
         }
     });
+}
+
+/**
+ * Easing function for smoother, more natural transitions
+ */
+function easeInOutCubic(t) {
+    return t < 0.5
+        ? 4 * t * t * t
+        : 1 - Math.pow(-2 * t + 2, 3) / 2;
 }
 
 /**
@@ -136,4 +149,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('Trump Anger Donation Page initialized');
     console.log('Images preloaded:', imageUrls.length);
+    console.log('Mobile-optimized with improved transitions');
 });

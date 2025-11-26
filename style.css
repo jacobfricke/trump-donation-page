@@ -9,6 +9,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     overflow-x: hidden;
     min-height: 100vh;
+    background-color: #1a1a2e;
 }
 
 /* Background container and image layers */
@@ -19,6 +20,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1;
+    background-color: #1a1a2e;
 }
 
 .background-layer {
@@ -28,128 +30,140 @@ body {
     width: 100%;
     height: 100%;
     background-size: cover;
-    background-position: center;
+    background-position: center 30%;
     background-repeat: no-repeat;
     opacity: 0;
-    transition: opacity 300ms ease-in-out;
+    transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Image paths for each layer with fallback colors */
+/* Mobile-first: better face positioning */
+@media (max-width: 768px) {
+    .background-layer {
+        background-size: auto 100%;
+        background-position: center 25%;
+    }
+}
+
+/* Image paths - only background color, no gradients */
 .background-layer[data-layer="1"] {
-    background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+    background-color: #1a1a2e;
     background-image: url('images/trump-1-neutral.png');
-    opacity: 1; /* Start with first image visible */
+    opacity: 1;
 }
 
 .background-layer[data-layer="2"] {
-    background: linear-gradient(135deg, #7B68EE 0%, #6A5ACD 100%);
+    background-color: #1a1a2e;
     background-image: url('images/trump-2-slightly-annoyed.png');
 }
 
 .background-layer[data-layer="3"] {
-    background: linear-gradient(135deg, #F5A623 0%, #E09616 100%);
+    background-color: #1a1a2e;
     background-image: url('images/trump-3-annoyed.png');
 }
 
 .background-layer[data-layer="4"] {
-    background: linear-gradient(135deg, #F8E71C 0%, #E6D619 100%);
+    background-color: #1a1a2e;
     background-image: url('images/trump-4-angry.png');
 }
 
 .background-layer[data-layer="5"] {
-    background: linear-gradient(135deg, #FF6B6B 0%, #EE5A52 100%);
+    background-color: #1a1a2e;
     background-image: url('images/trump-5-very-angry.png');
 }
 
 .background-layer[data-layer="6"] {
-    background: linear-gradient(135deg, #D0021B 0%, #B00118 100%);
+    background-color: #1a1a2e;
     background-image: url('images/trump-6-maximum-anger.png');
 }
 
-/* Dark overlay for readability */
+/* Lighter overlay for better face visibility */
 .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.45);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%);
     z-index: 1;
 }
 
-/* Content container */
+/* Content container - mobile-first */
 .content {
     position: relative;
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     padding: 20px;
+    padding-bottom: 40px;
     z-index: 2;
 }
 
 .container {
-    max-width: 600px;
+    max-width: 500px;
     width: 100%;
     text-align: center;
 }
 
-/* Typography */
+/* Typography - mobile-first */
 .headline {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(1.75rem, 6vw, 3rem);
     font-weight: 900;
     color: #ffffff;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    margin-bottom: 1rem;
-    line-height: 1.2;
+    text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.8);
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
 }
 
 .subline {
-    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-size: clamp(0.95rem, 3vw, 1.15rem);
     color: #f0f0f0;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
-    margin-bottom: 3rem;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+    margin-bottom: 2rem;
     font-weight: 400;
 }
 
-/* Donation section */
+/* Donation section - mobile-optimized */
 .donation-section {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 16px;
-    padding: 2.5rem 2rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: 20px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
 }
 
 .donation-display {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .donation-label {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #333;
     font-weight: 500;
     margin-right: 0.5rem;
+    display: block;
+    margin-bottom: 0.25rem;
 }
 
 .donation-amount {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 8vw, 2.75rem);
     font-weight: 900;
     color: #d93025;
     text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+    display: block;
 }
 
 /* Slider container and styling */
 .slider-container {
-    margin: 2rem 0;
+    margin: 1.75rem 0;
 }
 
 .slider {
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
-    height: 12px;
-    border-radius: 6px;
+    height: 14px;
+    border-radius: 7px;
     background: linear-gradient(to right, #4285f4, #ea4335);
     outline: none;
     cursor: pointer;
@@ -160,40 +174,47 @@ body {
     opacity: 0.9;
 }
 
-/* Slider thumb (Chrome, Safari, Edge) */
+/* Slider thumb - larger for mobile */
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: #ffffff;
-    border: 3px solid #d93025;
+    border: 4px solid #d93025;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s;
 }
 
 .slider::-webkit-slider-thumb:hover {
     transform: scale(1.15);
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
-/* Slider thumb (Firefox) */
+.slider::-webkit-slider-thumb:active {
+    transform: scale(1.05);
+}
+
 .slider::-moz-range-thumb {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: #ffffff;
-    border: 3px solid #d93025;
+    border: 4px solid #d93025;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s;
 }
 
 .slider::-moz-range-thumb:hover {
     transform: scale(1.15);
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.slider::-moz-range-thumb:active {
+    transform: scale(1.05);
 }
 
 /* Slider labels */
@@ -203,7 +224,7 @@ body {
     margin-top: 0.5rem;
     font-size: 0.9rem;
     color: #666;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 /* Interaction text */
@@ -211,83 +232,117 @@ body {
     font-size: 1rem;
     color: #555;
     font-style: italic;
-    margin: 1.5rem 0;
+    margin: 1.25rem 0;
     font-weight: 500;
     min-height: 1.5em;
 }
 
-/* Donate button */
+/* Donate button - mobile-optimized */
 .donate-button {
     width: 100%;
     padding: 1.25rem 2rem;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 700;
     color: #ffffff;
     background: linear-gradient(135deg, #d93025 0%, #c5221f 100%);
     border: none;
-    border-radius: 12px;
+    border-radius: 14px;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(217, 48, 37, 0.4);
+    box-shadow: 0 6px 20px rgba(217, 48, 37, 0.4);
     transition: all 0.3s;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    touch-action: manipulation;
 }
 
 .donate-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(217, 48, 37, 0.6);
+    box-shadow: 0 8px 24px rgba(217, 48, 37, 0.6);
     background: linear-gradient(135deg, #e63e30 0%, #d93025 100%);
 }
 
 .donate-button:active {
     transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(217, 48, 37, 0.4);
+    box-shadow: 0 4px 12px rgba(217, 48, 37, 0.4);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .donation-section {
-        padding: 2rem 1.5rem;
+/* Desktop optimization */
+@media (min-width: 769px) {
+    .content {
+        align-items: center;
+        padding-bottom: 20px;
     }
 
-    .donation-amount {
-        font-size: 2rem;
+    .donation-section {
+        padding: 2.25rem 2rem;
+    }
+
+    .headline {
+        margin-bottom: 1rem;
+    }
+
+    .subline {
+        margin-bottom: 2.5rem;
+    }
+}
+
+/* Small mobile adjustments */
+@media (max-width: 480px) {
+    .content {
+        padding: 15px;
+        padding-bottom: 30px;
+    }
+
+    .donation-section {
+        padding: 1.5rem 1.25rem;
+        border-radius: 16px;
+    }
+
+    .headline {
+        margin-bottom: 0.5rem;
+    }
+
+    .subline {
+        margin-bottom: 1.5rem;
+    }
+
+    .slider {
+        height: 12px;
+    }
+
+    .slider::-webkit-slider-thumb {
+        width: 28px;
+        height: 28px;
+    }
+
+    .slider::-moz-range-thumb {
+        width: 28px;
+        height: 28px;
     }
 
     .donate-button {
-        padding: 1rem 1.5rem;
+        padding: 1.1rem 1.5rem;
         font-size: 1.1rem;
     }
 }
 
-@media (max-width: 480px) {
+/* Landscape mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .content {
+        align-items: center;
+    }
+
     .headline {
-        margin-bottom: 0.75rem;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
     }
 
     .subline {
-        margin-bottom: 2rem;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
     }
 
     .donation-section {
-        padding: 1.5rem 1rem;
-    }
-
-    .donation-amount {
-        font-size: 1.75rem;
-    }
-
-    .slider {
-        height: 10px;
-    }
-
-    .slider::-webkit-slider-thumb {
-        width: 24px;
-        height: 24px;
-    }
-
-    .slider::-moz-range-thumb {
-        width: 24px;
-        height: 24px;
+        padding: 1.25rem 1.5rem;
     }
 }

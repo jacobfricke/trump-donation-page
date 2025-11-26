@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Trump Mad - Support Real Change</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background image layers (stacked, will crossfade) -->
+    <div class="background-container">
+        <div class="background-layer" data-layer="1"></div>
+        <div class="background-layer" data-layer="2"></div>
+        <div class="background-layer" data-layer="3"></div>
+        <div class="background-layer" data-layer="4"></div>
+        <div class="background-layer" data-layer="5"></div>
+        <div class="background-layer" data-layer="6"></div>
+        <div class="overlay"></div>
+    </div>
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container">
+            <h1 class="headline">Make Trump Mad — Support Real Change.</h1>
+            <p class="subline">Slide to see how furious he gets when you donate.</p>
+
+            <div class="donation-section">
+                <div class="donation-display">
+                    <span class="donation-label">Donation:</span>
+                    <span class="donation-amount" id="donationAmount">0 €</span>
+                </div>
+
+                <div class="slider-container">
+                    <input
+                        type="range"
+                        min="0"
+                        max="1000"
+                        value="0"
+                        class="slider"
+                        id="donationSlider"
+                    >
+                    <div class="slider-labels">
+                        <span>0 €</span>
+                        <span>1000 €</span>
+                    </div>
+                </div>
+
+                <p class="interaction-text" id="interactionText">Every euro pushes him closer to meltdown.</p>
+
+                <button class="donate-button" id="donateButton">
+                    Donate Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

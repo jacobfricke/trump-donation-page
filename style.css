@@ -1,0 +1,287 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Background container and image layers */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.background-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+}
+
+/* Image paths for each layer */
+.background-layer[data-layer="1"] {
+    background-image: url('images/trump-1-neutral.jpg');
+    opacity: 1; /* Start with first image visible */
+}
+
+.background-layer[data-layer="2"] {
+    background-image: url('images/trump-2-slightly-annoyed.jpg');
+}
+
+.background-layer[data-layer="3"] {
+    background-image: url('images/trump-3-annoyed.jpg');
+}
+
+.background-layer[data-layer="4"] {
+    background-image: url('images/trump-4-angry.jpg');
+}
+
+.background-layer[data-layer="5"] {
+    background-image: url('images/trump-5-very-angry.jpg');
+}
+
+.background-layer[data-layer="6"] {
+    background-image: url('images/trump-6-maximum-anger.jpg');
+}
+
+/* Dark overlay for readability */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1;
+}
+
+/* Content container */
+.content {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 2;
+}
+
+.container {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Typography */
+.headline {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.subline {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: #f0f0f0;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    margin-bottom: 3rem;
+    font-weight: 400;
+}
+
+/* Donation section */
+.donation-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.donation-display {
+    margin-bottom: 2rem;
+}
+
+.donation-label {
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: 500;
+    margin-right: 0.5rem;
+}
+
+.donation-amount {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #d93025;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+/* Slider container and styling */
+.slider-container {
+    margin: 2rem 0;
+}
+
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 12px;
+    border-radius: 6px;
+    background: linear-gradient(to right, #4285f4, #ea4335);
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.slider:hover {
+    opacity: 0.9;
+}
+
+/* Slider thumb (Chrome, Safari, Edge) */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3px solid #d93025;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Slider thumb (Firefox) */
+.slider::-moz-range-thumb {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3px solid #d93025;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s;
+}
+
+.slider::-moz-range-thumb:hover {
+    transform: scale(1.15);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Slider labels */
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+}
+
+/* Interaction text */
+.interaction-text {
+    font-size: 1rem;
+    color: #555;
+    font-style: italic;
+    margin: 1.5rem 0;
+    font-weight: 500;
+    min-height: 1.5em;
+}
+
+/* Donate button */
+.donate-button {
+    width: 100%;
+    padding: 1.25rem 2rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: linear-gradient(135deg, #d93025 0%, #c5221f 100%);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(217, 48, 37, 0.4);
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.donate-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(217, 48, 37, 0.6);
+    background: linear-gradient(135deg, #e63e30 0%, #d93025 100%);
+}
+
+.donate-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(217, 48, 37, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .donation-section {
+        padding: 2rem 1.5rem;
+    }
+
+    .donation-amount {
+        font-size: 2rem;
+    }
+
+    .donate-button {
+        padding: 1rem 1.5rem;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .headline {
+        margin-bottom: 0.75rem;
+    }
+
+    .subline {
+        margin-bottom: 2rem;
+    }
+
+    .donation-section {
+        padding: 1.5rem 1rem;
+    }
+
+    .donation-amount {
+        font-size: 1.75rem;
+    }
+
+    .slider {
+        height: 10px;
+    }
+
+    .slider::-webkit-slider-thumb {
+        width: 24px;
+        height: 24px;
+    }
+
+    .slider::-moz-range-thumb {
+        width: 24px;
+        height: 24px;
+    }
+}

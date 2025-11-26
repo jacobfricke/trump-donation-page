@@ -41,53 +41,32 @@ const MESSAGES = [
 ];
 
 /**
- * Calculate and apply crossfade opacity based on slider value
- * Ensures only ONE face is prominently visible at a time
+ * Show only one Trump face based on donation value
+ * NO crossfading - instant switches
  */
 function updateCrossfade(value) {
-    // Find which range we're in
-    let currentRange = null;
-    for (const range of RANGES) {
-        if (value >= range.min && value <= range.max) {
-            currentRange = range;
-            break;
-        }
+    // Determine which image to show based on value
+    let activeLayer;
+
+    if (value < 200) {
+        activeLayer = 1;
+    } else if (value < 400) {
+        activeLayer = 2;
+    } else if (value < 600) {
+        activeLayer = 3;
+    } else if (value < 800) {
+        activeLayer = 4;
+    } else if (value < 1000) {
+        activeLayer = 5;
+    } else {
+        activeLayer = 6;
     }
 
-    if (!currentRange) return;
-
-    // Calculate progress within the current range (0 to 1)
-    const rangeSize = currentRange.max - currentRange.min;
-    const valueInRange = value - currentRange.min;
-    const progress = valueInRange / rangeSize;
-
-    // Use easing function for smoother, more natural transitions
-    const easedProgress = easeInOutCubic(progress);
-
-    // Set opacity for all layers - ensure only one face is visible
+    // Show only the active layer, hide all others
     backgroundLayers.forEach((layer, index) => {
         const layerNumber = index + 1;
-
-        if (layerNumber === currentRange.fromLayer) {
-            // Fade out the "from" layer smoothly
-            layer.style.opacity = 1 - easedProgress;
-        } else if (layerNumber === currentRange.toLayer) {
-            // Fade in the "to" layer smoothly
-            layer.style.opacity = easedProgress;
-        } else {
-            // Completely hide all other layers
-            layer.style.opacity = 0;
-        }
+        layer.style.opacity = (layerNumber === activeLayer) ? 1 : 0;
     });
-}
-
-/**
- * Easing function for smoother, more natural transitions
- */
-function easeInOutCubic(t) {
-    return t < 0.5
-        ? 4 * t * t * t
-        : 1 - Math.pow(-2 * t + 2, 3) / 2;
 }
 
 /**

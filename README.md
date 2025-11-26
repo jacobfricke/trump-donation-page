@@ -57,6 +57,35 @@ In `script.js`, update the Campact donation URL on line 107:
 const campactUrl = `https://www.campact.de/spenden/?amount=${donationValue}`;
 ```
 
+## 🚀 Deploy to Railway.com
+
+This project is ready to deploy to Railway with zero configuration!
+
+### Quick Deploy
+
+1. **Prepare images**: Split composite and commit images to repository
+2. **Push to GitHub**: `git push origin main`
+3. **Deploy to Railway**:
+   - Go to https://railway.app/new
+   - Select "Deploy from GitHub repo"
+   - Choose this repository
+   - Railway auto-detects and deploys!
+
+Your site will be live at `https://your-project.railway.app`
+
+### Detailed Instructions
+
+See **[RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md)** for complete deployment guide including:
+- Step-by-step Railway setup
+- Environment variables configuration
+- Custom domain setup
+- Troubleshooting tips
+- Performance optimization
+
+### Pre-Deployment Checklist
+
+Use **[DEPLOYMENT_CHECKLIST.md](DEPLOYMENT_CHECKLIST.md)** to ensure everything is ready.
+
 ## How It Works
 
 ### Crossfading Logic

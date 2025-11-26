@@ -6,13 +6,15 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    overflow-x: hidden;
     min-height: 100vh;
     background-color: #000;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Background container - full screen Trump face */
+/* Background - Trump face full screen */
 .background-container {
     position: fixed;
     top: 0;
@@ -35,11 +37,11 @@ body {
     opacity: 0;
 }
 
-/* Mobile: zoom in more to show face better */
+/* Mobile: zoom and position for best face visibility */
 @media (max-width: 768px) {
     .background-layer {
-        background-size: auto 120%;
-        background-position: center 35%;
+        background-size: auto 100%;
+        background-position: center 30%;
     }
 }
 
@@ -75,332 +77,363 @@ body {
     background-image: url('images/trump-6-maximum-anger.png');
 }
 
-/* Subtle vignette - darker edges */
+/* Dark gradient overlay for better text readability */
 .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.5) 100%);
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0.7) 100%
+    );
     z-index: 1;
 }
 
-/* Content container - no background */
+/* Main content container */
 .content {
     position: relative;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 30px 20px;
+    justify-content: flex-end;
+    padding: 20px;
     z-index: 10;
 }
 
 .container {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 100vh;
+    max-width: 480px;
+    margin: 0 auto;
 }
 
-/* Headline - blends with image */
+/* Headline - ActBlue style: clear, bold, compelling */
 .headline {
-    font-size: clamp(2rem, 6vw, 3.5rem);
-    font-weight: 900;
+    font-size: clamp(1.75rem, 5vw, 2.25rem);
+    font-weight: 800;
     color: #ffffff;
     text-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.9),
-        0 2px 10px rgba(0, 0, 0, 0.8),
-        0 0 60px rgba(0, 0, 0, 0.7);
-    margin-bottom: 0.75rem;
-    line-height: 1.05;
+        0 2px 20px rgba(0, 0, 0, 0.9),
+        0 1px 8px rgba(0, 0, 0, 0.8);
+    margin-bottom: 0.5rem;
+    line-height: 1.15;
     text-align: center;
     letter-spacing: -0.02em;
 }
 
-.subline {
-    font-size: clamp(0.85rem, 2vw, 1rem);
-    color: rgba(255, 255, 255, 0.85);
-    text-shadow:
-        0 2px 10px rgba(0, 0, 0, 0.9),
-        0 1px 5px rgba(0, 0, 0, 0.8);
-    margin-bottom: 1.5rem;
-    margin-top: 0.5rem;
-    font-weight: 400;
-    text-align: center;
-    font-style: italic;
-}
-
-/* Donation section - NO BACKGROUND BOX */
+/* Donation form card - professional, clean */
 .donation-section {
-    background: none;
-    padding: 0;
-    max-width: 500px;
-    margin: 0 auto;
-    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 16px;
+    padding: 24px 20px;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.6),
+        0 0 1px rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Donation amount - floating */
+/* Donation amount display - prominent, clear */
 .donation-display {
-    margin-bottom: 2rem;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .donation-label {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 600;
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 0.5rem;
-    text-shadow:
-        0 2px 10px rgba(0, 0, 0, 0.9),
-        0 0 30px rgba(0, 0, 0, 0.8);
+    letter-spacing: 1px;
+    color: #666;
+    margin-bottom: 8px;
 }
 
 .donation-amount {
-    font-size: clamp(3rem, 10vw, 5rem);
-    font-weight: 900;
-    color: #ff4444;
     display: block;
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    font-weight: 900;
+    color: #d32f2f;
     line-height: 1;
-    text-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.95),
-        0 2px 10px rgba(0, 0, 0, 0.9),
-        0 0 60px rgba(255, 68, 68, 0.5);
     letter-spacing: -0.03em;
 }
 
-/* Slider - modern transparent */
+/* Instruction text - clear, actionable */
+.subline {
+    font-size: 0.9rem;
+    color: #555;
+    text-align: center;
+    margin-bottom: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* Slider container - ActBlue style: clean, accessible */
 .slider-container {
-    margin: 2rem 0;
-    padding: 0 10px;
+    margin: 20px 0 24px;
 }
 
 .slider {
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
-    height: 6px;
-    border-radius: 3px;
-    background: rgba(255, 255, 255, 0.2);
+    height: 8px;
+    border-radius: 4px;
+    background: #e0e0e0;
     outline: none;
     cursor: pointer;
-    transition: all 0.3s;
-    backdrop-filter: blur(10px);
-    box-shadow:
-        0 2px 10px rgba(0, 0, 0, 0.5),
-        inset 0 1px 3px rgba(0, 0, 0, 0.3);
+    position: relative;
 }
 
-.slider:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-/* Slider fill effect */
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #ff4444, #cc0000);
-    border: 3px solid rgba(255, 255, 255, 0.9);
-    cursor: pointer;
+    background: #d32f2f;
+    border: 4px solid #ffffff;
+    cursor: grab;
     box-shadow:
-        0 4px 15px rgba(255, 68, 68, 0.6),
-        0 2px 8px rgba(0, 0, 0, 0.5);
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        0 4px 12px rgba(211, 47, 47, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.15s ease;
 }
 
 .slider::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
+    transform: scale(1.15);
     box-shadow:
-        0 6px 20px rgba(255, 68, 68, 0.8),
-        0 3px 12px rgba(0, 0, 0, 0.6);
+        0 6px 16px rgba(211, 47, 47, 0.5),
+        0 3px 6px rgba(0, 0, 0, 0.25);
 }
 
 .slider::-webkit-slider-thumb:active {
+    cursor: grabbing;
     transform: scale(1.1);
 }
 
 .slider::-moz-range-thumb {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #ff4444, #cc0000);
-    border: 3px solid rgba(255, 255, 255, 0.9);
-    cursor: pointer;
+    background: #d32f2f;
+    border: 4px solid #ffffff;
+    cursor: grab;
     box-shadow:
-        0 4px 15px rgba(255, 68, 68, 0.6),
-        0 2px 8px rgba(0, 0, 0, 0.5);
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        0 4px 12px rgba(211, 47, 47, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.15s ease;
 }
 
 .slider::-moz-range-thumb:hover {
-    transform: scale(1.2);
+    transform: scale(1.15);
     box-shadow:
-        0 6px 20px rgba(255, 68, 68, 0.8),
-        0 3px 12px rgba(0, 0, 0, 0.6);
+        0 6px 16px rgba(211, 47, 47, 0.5),
+        0 3px 6px rgba(0, 0, 0, 0.25);
 }
 
 .slider::-moz-range-thumb:active {
+    cursor: grabbing;
     transform: scale(1.1);
 }
 
-/* Slider labels */
+/* Slider labels - clear, readable */
 .slider-labels {
     display: flex;
     justify-content: space-between;
-    margin-top: 0.75rem;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.6);
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: #888;
     font-weight: 600;
-    text-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.9),
-        0 0 20px rgba(0, 0, 0, 0.8);
 }
 
-/* Interaction text - floating */
+/* Impact message - emotional connection */
 .interaction-text {
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
-    color: #ffffff;
-    font-style: italic;
-    margin: 1.5rem 0;
-    font-weight: 500;
-    min-height: 1.5em;
+    font-size: 0.95rem;
+    color: #333;
     text-align: center;
-    text-shadow:
-        0 3px 15px rgba(0, 0, 0, 0.95),
-        0 1px 8px rgba(0, 0, 0, 0.9),
-        0 0 40px rgba(0, 0, 0, 0.8);
+    margin: 16px 0 20px;
+    font-weight: 600;
+    min-height: 24px;
+    font-style: italic;
 }
 
-/* Donate button - modern glass effect */
+/* CTA Button - ActBlue style: prominent, clear, action-oriented */
 .donate-button {
     width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    display: block;
-    padding: 1.25rem 2rem;
-    font-size: 1.3rem;
+    padding: 18px 24px;
+    font-size: 1.15rem;
     font-weight: 800;
     color: #ffffff;
-    background: linear-gradient(135deg, rgba(255, 68, 68, 0.9), rgba(204, 0, 0, 0.9));
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50px;
+    background: linear-gradient(180deg, #d32f2f 0%, #b71c1c 100%);
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
     box-shadow:
-        0 8px 30px rgba(255, 68, 68, 0.5),
-        0 4px 15px rgba(0, 0, 0, 0.6),
+        0 4px 14px rgba(211, 47, 47, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 0.5px;
     touch-action: manipulation;
-    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.donate-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
+.donate-button:hover::before {
+    left: 100%;
 }
 
 .donate-button:hover {
-    transform: translateY(-3px) scale(1.02);
+    transform: translateY(-2px);
     box-shadow:
-        0 12px 40px rgba(255, 68, 68, 0.7),
-        0 6px 20px rgba(0, 0, 0, 0.7),
+        0 6px 20px rgba(211, 47, 47, 0.5),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    background: linear-gradient(135deg, rgba(255, 85, 85, 0.95), rgba(220, 0, 0, 0.95));
-    border-color: rgba(255, 255, 255, 0.5);
+    background: linear-gradient(180deg, #e53935 0%, #c62828 100%);
 }
 
 .donate-button:active {
-    transform: translateY(-1px) scale(1);
+    transform: translateY(0);
     box-shadow:
-        0 6px 20px rgba(255, 68, 68, 0.6),
-        0 3px 10px rgba(0, 0, 0, 0.6);
+        0 2px 8px rgba(211, 47, 47, 0.4),
+        inset 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Desktop optimizations */
 @media (min-width: 769px) {
     .content {
-        padding: 50px 40px;
+        justify-content: center;
+        padding: 40px;
+    }
+
+    .container {
+        max-width: 520px;
     }
 
     .donation-section {
-        max-width: 550px;
-    }
-
-    .slider-container {
-        padding: 0 20px;
-    }
-}
-
-/* Mobile optimizations */
-@media (max-width: 480px) {
-    .content {
-        padding: 25px 15px;
+        padding: 32px 28px;
     }
 
     .headline {
-        font-size: 1.75rem;
-    }
-
-    .subline {
-        font-size: 0.95rem;
-    }
-
-    .donation-amount {
-        font-size: 2.5rem;
-    }
-
-    .slider {
-        height: 5px;
-    }
-
-    .slider::-webkit-slider-thumb,
-    .slider::-moz-range-thumb {
-        width: 20px;
-        height: 20px;
-    }
-
-    .donate-button {
-        padding: 1.1rem 1.75rem;
-        font-size: 1.1rem;
+        margin-bottom: 1rem;
     }
 }
 
-/* Landscape mobile */
-@media (max-height: 600px) and (orientation: landscape) {
+/* Tablet landscape */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .background-layer {
+        background-size: cover;
+        background-position: center 35%;
+    }
+}
+
+/* Small mobile optimization */
+@media (max-width: 380px) {
     .content {
-        padding: 20px 15px;
+        padding: 16px;
+    }
+
+    .donation-section {
+        padding: 20px 16px;
     }
 
     .headline {
         font-size: 1.5rem;
-        margin-bottom: 0.5rem;
     }
 
-    .subline {
-        font-size: 0.85rem;
+    .donation-amount {
+        font-size: 2.25rem;
     }
 
-    .donation-display {
-        margin-bottom: 1rem;
-    }
-
-    .slider-container {
-        margin: 1rem 0;
-    }
-
-    .interaction-text {
-        margin: 1rem 0;
+    .slider::-webkit-slider-thumb,
+    .slider::-moz-range-thumb {
+        width: 28px;
+        height: 28px;
     }
 }
 
-/* Very small screens */
-@media (max-width: 360px) {
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .slider::-webkit-slider-thumb,
+    .slider::-moz-range-thumb {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* Landscape mobile - compact layout */
+@media (max-height: 600px) and (orientation: landscape) {
+    .content {
+        justify-content: center;
+        padding: 16px;
+    }
+
+    .headline {
+        font-size: 1.35rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .donation-section {
+        padding: 16px;
+    }
+
+    .donation-display {
+        margin-bottom: 12px;
+    }
+
+    .slider-container {
+        margin: 12px 0;
+    }
+
+    .interaction-text {
+        margin: 12px 0 16px;
+        font-size: 0.85rem;
+    }
+
     .donate-button {
-        padding: 1rem 1.5rem;
+        padding: 14px 20px;
         font-size: 1rem;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .donation-section {
+        border: 2px solid #000;
+    }
+
+    .slider {
+        border: 1px solid #000;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .slider::-webkit-slider-thumb,
+    .slider::-moz-range-thumb,
+    .donate-button {
+        transition: none;
+    }
+
+    .donate-button::before {
+        display: none;
     }
 }

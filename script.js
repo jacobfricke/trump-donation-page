@@ -33,11 +33,11 @@ const RANGES = [
 // Fun messages that change based on donation amount
 const MESSAGES = [
     { threshold: 0, text: "Every euro pushes him closer to meltdown." },
-    { threshold: 100, text: "He's starting to notice..." },
-    { threshold: 200, text: "Now he's getting annoyed!" },
-    { threshold: 400, text: "You're really getting under his skin!" },
-    { threshold: 600, text: "He's losing it!" },
-    { threshold: 800, text: "Maximum fury unlocked!" }
+    { threshold: 50, text: "He's starting to notice..." },
+    { threshold: 175, text: "Now he's getting annoyed!" },
+    { threshold: 300, text: "You're really getting under his skin!" },
+    { threshold: 425, text: "He's losing it!" },
+    { threshold: 500, text: "Maximum fury unlocked!" }
 ];
 
 /**
@@ -48,18 +48,18 @@ function updateCrossfade(value) {
     // Determine which image to show based on value
     let activeLayer;
 
-    if (value < 200) {
-        activeLayer = 1;
-    } else if (value < 400) {
-        activeLayer = 2;
-    } else if (value < 600) {
-        activeLayer = 3;
-    } else if (value < 800) {
-        activeLayer = 4;
-    } else if (value < 1000) {
-        activeLayer = 5;
+    if (value < 50) {
+        activeLayer = 1; // Neutral
+    } else if (value < 175) {
+        activeLayer = 2; // Slightly annoyed
+    } else if (value < 300) {
+        activeLayer = 3; // Annoyed
+    } else if (value < 425) {
+        activeLayer = 4; // Angry
+    } else if (value < 500) {
+        activeLayer = 5; // Very angry
     } else {
-        activeLayer = 6;
+        activeLayer = 6; // Maximum anger (500+)
     }
 
     // Show only the active layer, hide all others

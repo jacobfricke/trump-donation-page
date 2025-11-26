@@ -4,8 +4,8 @@
   "description": "A humorous donation page where Trump gets progressively angrier as donation amounts increase",
   "main": "index.html",
   "scripts": {
-    "start": "serve -s . -l $PORT",
-    "dev": "serve -s . -l 3000"
+    "start": "node auto-rename-images.js && serve -s . -l $PORT",
+    "dev": "node auto-rename-images.js && serve -s . -l 3000"
   },
   "keywords": [
     "donation",

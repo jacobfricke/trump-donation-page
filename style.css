@@ -12,17 +12,38 @@ body {
     background-color: #000;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
 }
 
-/* Background - Trump face optimized for visibility */
+/* Main content - vertical layout */
+.content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #000;
+}
+
+/* Trump face section (upper area) */
+.face-section {
+    position: relative;
+    flex: 0 0 auto;
+    height: 45vh;
+    min-height: 280px;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Background container - now relative within face-section */
 .background-container {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
-    background-color: #0a0a0a;
+    z-index: 1;
 }
 
 .background-layer {
@@ -32,106 +53,65 @@ body {
     width: 100%;
     height: 100%;
     background-size: contain;
-    background-position: center 30%;
+    background-position: center center;
     background-repeat: no-repeat;
     opacity: 0;
 }
 
-/* Mobile: smaller Trump face, centered */
-@media (max-width: 768px) {
-    .background-layer {
-        background-size: 85%;
-        background-position: center 25%;
-    }
-}
-
 /* Image paths */
 .background-layer[data-layer="1"] {
-    background-color: #0a0a0a;
     background-image: url('images/trump-1-neutral.png');
     opacity: 1;
 }
 
 .background-layer[data-layer="2"] {
-    background-color: #0a0a0a;
     background-image: url('images/trump-2-slightly-annoyed.png');
 }
 
 .background-layer[data-layer="3"] {
-    background-color: #0a0a0a;
     background-image: url('images/trump-3-annoyed.png');
 }
 
 .background-layer[data-layer="4"] {
-    background-color: #0a0a0a;
     background-image: url('images/trump-4-angry.png');
 }
 
 .background-layer[data-layer="5"] {
-    background-color: #0a0a0a;
     background-image: url('images/trump-5-very-angry.png');
 }
 
 .background-layer[data-layer="6"] {
-    background-color: #0a0a0a;
     background-image: url('images/trump-6-maximum-anger.png');
 }
 
-/* Smart gradient overlay - dark at bottom only for form readability */
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        180deg,
-        transparent 0%,
-        transparent 45%,
-        rgba(0, 0, 0, 0.3) 60%,
-        rgba(0, 0, 0, 0.85) 100%
-    );
-    z-index: 1;
-}
-
-/* Main content - positioned at bottom */
-.content {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 0;
-    z-index: 10;
-}
-
-.container {
-    width: 100%;
-    max-width: 100%;
-}
-
-/* Headline - floats at top with strong shadow */
+/* Headline - floats over Trump face */
 .headline {
-    position: absolute;
-    top: 30px;
-    left: 0;
-    right: 0;
-    font-size: clamp(1.65rem, 4.5vw, 2.1rem);
+    position: relative;
+    z-index: 10;
+    font-size: clamp(1.5rem, 4vw, 1.9rem);
     font-weight: 900;
     color: #ffffff;
     text-shadow:
-        0 3px 25px rgba(0, 0, 0, 0.95),
-        0 2px 15px rgba(0, 0, 0, 0.9),
-        0 1px 5px rgba(0, 0, 0, 0.8);
+        0 4px 20px rgba(0, 0, 0, 0.9),
+        0 2px 10px rgba(0, 0, 0, 0.8),
+        0 1px 3px rgba(0, 0, 0, 0.7);
     margin: 0;
     padding: 0 20px;
-    line-height: 1.15;
+    line-height: 1.2;
     text-align: center;
     letter-spacing: -0.02em;
-    z-index: 5;
 }
 
-/* Donation form - solid card at bottom */
+/* Form wrapper (lower area) */
+.form-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    background-color: #000;
+    padding: 0;
+}
+
+/* Donation form - solid white card */
 .donation-section {
     background: #ffffff;
     border-radius: 24px 24px 0 0;
@@ -322,40 +302,40 @@ body {
         inset 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-/* Desktop - centered card */
+/* Desktop - larger face area and centered card */
 @media (min-width: 769px) {
-    .content {
-        justify-content: flex-end;
-        padding: 0;
+    .face-section {
+        height: 50vh;
+        min-height: 350px;
+    }
+
+    .headline {
+        font-size: clamp(1.8rem, 3vw, 2.2rem);
+        padding: 0 40px;
+    }
+
+    .form-wrapper {
+        align-items: center;
+        padding: 20px;
     }
 
     .donation-section {
         max-width: 540px;
         margin: 0 auto;
         border-radius: 20px;
-        margin-bottom: 40px;
         padding: 36px 32px 40px;
-    }
-
-    .headline {
-        top: 50px;
-        padding: 0 40px;
-    }
-}
-
-/* Tablet landscape */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .background-layer {
-        background-size: cover;
-        background-position: center 25%;
     }
 }
 
 /* Small mobile */
 @media (max-width: 380px) {
+    .face-section {
+        height: 40vh;
+        min-height: 240px;
+    }
+
     .headline {
-        font-size: 1.45rem;
-        top: 20px;
+        font-size: 1.35rem;
         padding: 0 16px;
     }
 
@@ -385,9 +365,13 @@ body {
 
 /* Landscape mobile */
 @media (max-height: 650px) and (orientation: landscape) {
+    .face-section {
+        height: 50vh;
+        min-height: 200px;
+    }
+
     .headline {
-        font-size: 1.3rem;
-        top: 15px;
+        font-size: 1.25rem;
     }
 
     .donation-section {
@@ -416,19 +400,28 @@ body {
 
 /* Very short landscape */
 @media (max-height: 500px) and (orientation: landscape) {
-    .headline {
-        position: static;
-        font-size: 1.2rem;
-        padding: 16px 20px 8px;
-        background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+    .content {
+        flex-direction: row;
     }
 
-    .content {
-        justify-content: flex-start;
+    .face-section {
+        flex: 0 0 40%;
+        height: 100vh;
+        min-height: auto;
+    }
+
+    .form-wrapper {
+        flex: 1;
+        overflow-y: auto;
+    }
+
+    .headline {
+        font-size: 1.1rem;
+        padding: 12px 16px;
     }
 
     .donation-section {
-        margin-top: 0;
+        border-radius: 0;
     }
 }
 
